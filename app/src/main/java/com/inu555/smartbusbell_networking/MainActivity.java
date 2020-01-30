@@ -43,19 +43,30 @@ public class MainActivity extends AppCompatActivity {
     // 수신한 데이터를 저장할 스트링 참조변수
     private String receivedDataString;
     // 송신할 객체 데이터에 대한 JSON형 문자열
-    private String dataJsonStrToSend;
+    private String dataJsonStrToSend1;
+    private String dataJsonStrToSend2;
+    private String dataJsonStrToSend3;
+
 
     // 데이터를 웹 서버에 보낼 버튼 참조변수
-    private Button bt_to_send_objects_to_web_server;
+    private Button bt_send1;
+    private Button bt_send2;
+    private Button bt_send3;
+
     // 전송 버튼 클릭 여부를 체크할 boolean 변수
-    private boolean isSendButtonClicked = false;
+    private boolean isSendButtonClicked1 = false;
+    private boolean isSendButtonClicked2 = false;
+    private boolean isSendButtonClicked3 = false;
     // 웹 서버로부터 수신한 객체들을 JSON형식의 String으로 바꿔서 출력할 TextView
     private TextView tv_to_print_received_obejcts_in_json_string;
 
     // 서버로부터 데이터를 받는 스레드 객체 참조변수 선언
     Thread receivingDataThread;
     // 서버로 데이터를 전송하는 스레드 객체 참조변수 선언
-    Thread sendDataThread;
+    Thread sendDataThread1;
+    Thread sendDataThread2;
+    Thread sendDataThread3;
+
 
     // Handler 참조변수 선언
     Handler mHandler;
@@ -63,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
     // String을 key값으로,
     // Object를 value값으로 담을 HashMap 생성
     // 이 데이터는 어플에서 서버로 전송할 총 데이터 묶음임.
-    HashMap<String, Object> model = new HashMap<String, Object>();
+    HashMap<String, Object> model1 = new HashMap<String, Object>();
+    HashMap<String, Object> model2 = new HashMap<String, Object>();
+    HashMap<String, Object> model3 = new HashMap<String, Object>();
+
 
 
     // 어플이 처음 켜질 때
@@ -90,7 +104,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // 위젯 참조 변수에 대한 할당
-        bt_to_send_objects_to_web_server = (Button) findViewById(R.id.button_toSendToObejctsToWebServer);
+        bt_send1 = (Button) findViewById(R.id.button1);
+        bt_send2 = (Button) findViewById(R.id.button2);
+        bt_send3 = (Button) findViewById(R.id.button3);
+
         tv_to_print_received_obejcts_in_json_string = (TextView) findViewById(R.id.textView_receivedMessagesFromWebServer);
 
         // Handler 객체 할당
@@ -108,38 +125,23 @@ public class MainActivity extends AppCompatActivity {
         // 스레드 객체 생성
         // 해당 객체를 참조변수에 할당
         // 데이터 전송 스레드 실행
-        sendDataThread = new Thread(new sendDate());
-        System.out.println("새로운 sendData 스레드 생성");
-        sendDataThread.start();
+        sendDataThread1 = new Thread(new sendData1());
+        System.out.println("새로운 sendData1 스레드 생성");
+        sendDataThread1.start();
 
-        /*
+        sendDataThread2 = new Thread(new sendData2());
+        System.out.println("새로운 sendData1 스레드 생성");
+        sendDataThread2.start();
 
-        // ==== 데이터 생성 및 준비 ====
-        // 어플에서 Reservation 객체 2개를 ArrayList에 담아서 서버에 보낸다.
-        // Reservation형 ArrayList 생성
-        ArrayList<Reservation> reservationsArrayList = new ArrayList<Reservation>();
+        sendDataThread3 = new Thread(new sendData3());
+        System.out.println("새로운 sendData1 스레드 생성");
+        sendDataThread3.start();
 
-        // 첫 번째 Reservation 객체를 생성하여
-        // Reservation 클래스에 있는 set함수를 통해
-        // 객체의 각 멤버변수 필드를 설정하고
-        // ArrayList에 추가
-        reservationsArrayList.add(new Reservation()
-                .setSampleNumber(1111)
-                .setSampleCode("안드로이드 코드1")
-                .setSampleName("안드로이드 이름1")
-                .setSampleDate(new Date()));
+        // Gson형 객체 생성
+        Gson gson = new Gson();
 
-        // 두 번째 Reservation 객체를 생성하여
-        // Reservation 클래스에 있는 set함수를 통해
-        // 객체의 각 멤버변수 필드를 설정하고
-        // ArrayList에 추가
-        reservationsArrayList.add(new Reservation()
-                .setSampleNumber(2222)
-                .setSampleCode("안드로이드 코드2")
-                .setSampleName("안드로이드 이름2")
-                .setSampleDate(new Date()));
+        // === 1번 데이터 === //
 
-         */
 
         Reservation reservation = new Reservation(
                 "abc111",
@@ -149,50 +151,98 @@ public class MainActivity extends AppCompatActivity {
 
         ConfirmBus confirmBus = new ConfirmBus("인천11가2222", "780-1번");
 
+        Android android1 = new Android("abc111", "인천11가2222", "780-1", null);
+
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model.put("requestBusRoute", "780-1번");
+        model1.put("test1", android1);
 
-        /*
-            위에서 설정한 총 데이터 HaspMap 참조변수는 model 이다.
-            클라이언트와 서버간에 데이터 전송 및 수신을 할 때,
-            보통 데이터 표현 방식으로 JSON을 사용한다.
-            데이터를 JSON 표현 방식으로 String화 하여
-            송신 및 수신한다.
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,j
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStrToSend1 = gson.toJson(model1);
 
-            클라이언트 : 객체 데이터 -> JSON 표현방식의 문자열 -> 전송 -> 서버
-            서버 :  클라이언트 -> 수신 -> JSON 표현방식의 문자열 -> 객체 데이터
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStrToSend1);
 
-            따라서
-            이 HashMap 객체 model을 JSON형식 String으로 변환한다.
-            이를 위해 Gson을 사용한다.
-            Gson은 Google에서 만든 JSON 활용 라이브러리이다. 매우 편리하다.
-            이 라이브러리 사용을 위해 Gradle Scripts/build.gradle(Module: app)에
-            implementation 'com.google.code.gson:gson:2.8.5' 로 의존성 추가를 해 주었다.
-            HashMap형 객체 데이터를 JSON형식의 문자열로 간편하게 변환해준다.
-            물론 반대로 변환도 가능하다.
-        */
+        // === 1번 데이터 끝 === //
 
-        // Gson형 객체 생성
-        Gson gson = new Gson();
+
+
+
+        // === 2번 데이터 === //
+
+        Android android2 = new Android("abc222", "인천11가2222", "780-1", null);
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+        model2.put("test2", android2);
+
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
         // dataJsonStrToSend 참조 변수에 할당하였다.
-        dataJsonStrToSend = gson.toJson(model);
+        dataJsonStrToSend2 = gson.toJson(model2);
 
         // 확인차 로그출력을 한다.
-        System.out.println(dataJsonStrToSend);
+        System.out.println(dataJsonStrToSend2);
+
+        // === 2번 데이터 끝 === //
+
+
+        Android android3 = new Android("abc333", "인천11가2222", "780-1", null);
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+        model3.put("test3", android3);
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStrToSend3 = gson.toJson(model3);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStrToSend3);
+
+        // === 3번 데이터 === //
+
+
+
+        // === 3번 데이터 끝 === //
 
         // 전송 버튼에 클릭리스터 설정
-        bt_to_send_objects_to_web_server.setOnClickListener(new Button.OnClickListener() {
+        bt_send1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 서버에 데이터 전송 버튼 클릭 시,
                 // 버튼 클릭 상태 true로 변경
-                isSendButtonClicked = true;
+                isSendButtonClicked1 = true;
+            }
+        });
+
+        bt_send2.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 서버에 데이터 전송 버튼 클릭 시,
+                // 버튼 클릭 상태 true로 변경
+                isSendButtonClicked2 = true;
+            }
+        });
+
+        bt_send3.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 서버에 데이터 전송 버튼 클릭 시,
+                // 버튼 클릭 상태 true로 변경
+                isSendButtonClicked3 = true;
             }
         });
     }
@@ -223,20 +273,20 @@ public class MainActivity extends AppCompatActivity {
     // 사용자가 버튼을 클릭할 시,
     // 서버에 위에서 준비한 총 데이터 model을
     // 버퍼스트림으로 전송함
-    private class sendDate implements Runnable{
+    private class sendData1 implements Runnable{
         public void run() {
             System.out.println("새로운 sendData 스레드 실행");
             try {
                 while(true){
                     // 만약 버튼이 클릭되지 않았으면
                     // continue
-                    if(isSendButtonClicked == false){
+                    if(isSendButtonClicked1 == false){
                         continue;
                     }else{
                         // 버튼이 클릭되었으면
                         // JSON형태의 문자열 데이터를
                         // 버퍼스트림을 통해 서버로 보낸다
-                        bw.write(dataJsonStrToSend);
+                        bw.write(dataJsonStrToSend1);
                         // 수신측 BufferdReader의 readLine()함수를 통해 문자열 데이터를 수신하려면
                         // 송신측의 inputStream에는  반드시 개행문자가 포함되어야 한다.
                         // 자바에서의 개행문자는 "\n" 이지만,
@@ -247,11 +297,85 @@ public class MainActivity extends AppCompatActivity {
                         bw.newLine();
                         //남아있는 데이터를 모두 출력시킴
                         bw.flush();
-                        System.out.println("전송한 데이터 : " + dataJsonStrToSend);
+                        System.out.println("전송한 데이터 : " + dataJsonStrToSend1);
                         System.out.println("데이터 전송 완료");
                         // 데이터 전송 완료 후
                         // 버튼 클릭 상태 false로 변경
-                        isSendButtonClicked = false;
+                        isSendButtonClicked1 = false;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class sendData2 implements Runnable{
+        public void run() {
+            System.out.println("새로운 sendData 스레드 실행");
+            try {
+                while(true){
+                    // 만약 버튼이 클릭되지 않았으면
+                    // continue
+                    if(isSendButtonClicked2 == false){
+                        continue;
+                    }else{
+                        // 버튼이 클릭되었으면
+                        // JSON형태의 문자열 데이터를
+                        // 버퍼스트림을 통해 서버로 보낸다
+                        bw.write(dataJsonStrToSend2);
+                        // 수신측 BufferdReader의 readLine()함수를 통해 문자열 데이터를 수신하려면
+                        // 송신측의 inputStream에는  반드시 개행문자가 포함되어야 한다.
+                        // 자바에서의 개행문자는 "\n" 이지만,
+                        // 스트림에서의 개행문자는 "\r\n"이 개행문자이다.
+                        // 따라서, 보내는쪽 스트림의 의 데이터 뒤에 "\r\n"을 반드시 붙여야한다.
+                        // BufferedWriter에서 이 역할을
+                        // newLine()함수가 수행한다.
+                        bw.newLine();
+                        //남아있는 데이터를 모두 출력시킴
+                        bw.flush();
+                        System.out.println("전송한 데이터 : " + dataJsonStrToSend2);
+                        System.out.println("데이터 전송 완료");
+                        // 데이터 전송 완료 후
+                        // 버튼 클릭 상태 false로 변경
+                        isSendButtonClicked2 = false;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class sendData3 implements Runnable{
+        public void run() {
+            System.out.println("새로운 sendData 스레드 실행");
+            try {
+                while(true){
+                    // 만약 버튼이 클릭되지 않았으면
+                    // continue
+                    if(isSendButtonClicked3 == false){
+                        continue;
+                    }else{
+                        // 버튼이 클릭되었으면
+                        // JSON형태의 문자열 데이터를
+                        // 버퍼스트림을 통해 서버로 보낸다
+                        bw.write(dataJsonStrToSend3);
+                        // 수신측 BufferdReader의 readLine()함수를 통해 문자열 데이터를 수신하려면
+                        // 송신측의 inputStream에는  반드시 개행문자가 포함되어야 한다.
+                        // 자바에서의 개행문자는 "\n" 이지만,
+                        // 스트림에서의 개행문자는 "\r\n"이 개행문자이다.
+                        // 따라서, 보내는쪽 스트림의 의 데이터 뒤에 "\r\n"을 반드시 붙여야한다.
+                        // BufferedWriter에서 이 역할을
+                        // newLine()함수가 수행한다.
+                        bw.newLine();
+                        //남아있는 데이터를 모두 출력시킴
+                        bw.flush();
+                        System.out.println("전송한 데이터 : " + dataJsonStrToSend3);
+                        System.out.println("데이터 전송 완료");
+                        // 데이터 전송 완료 후
+                        // 버튼 클릭 상태 false로 변경
+                        isSendButtonClicked3 = false;
                     }
                 }
             } catch (Exception e) {
