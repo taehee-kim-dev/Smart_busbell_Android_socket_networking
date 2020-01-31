@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     // 포트번호
-    private final int port = 5555;
+    private final int port = 7777;
     // IP주소
     //private final String ip = "13.125.8.121";
     private final String ip = "10.0.2.2";
@@ -153,12 +153,14 @@ public class MainActivity extends AppCompatActivity {
 
         Android android1 = new Android("abc111", "인천11가2222", "780-1", null);
 
+        RasberryPi rasberryPi1 = new RasberryPi("인천11가2222", "780-1", 1.1 , 2.2);
+
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model1.put("requestBusRoute", "780-1");
+        model1.put("registerBus", rasberryPi1);
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,j
