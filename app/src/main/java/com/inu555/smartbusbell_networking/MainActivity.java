@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model2.put("addReservation", android2);
+        model2.put("searchBusRoute", "80");
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model3.put("deleteReservation", android3);
+        model3.put("searchBusRoute", "90");
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
