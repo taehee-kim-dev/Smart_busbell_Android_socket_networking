@@ -159,13 +159,6 @@ public class MainActivity extends AppCompatActivity {
 
         // === 1번 데이터 === //
 
-
-        Reservation reservation = new Reservation(
-                "abc111",
-                "인천11가2222",
-                "38-026"
-        );
-
         ConfirmBus confirmBus = new ConfirmBus("인천11가2222", "780-1번");
 
         Android android1 = new Android("abc111", "인천11가2222", "780-1", null);
