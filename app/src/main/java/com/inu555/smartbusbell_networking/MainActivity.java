@@ -3,7 +3,6 @@ package com.inu555.smartbusbell_networking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -67,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
     Thread sendDataThread2;
     Thread sendDataThread3;
 
-
-    // Handler 참조변수 선언
-    Handler mHandler;
-
     // String을 key값으로,
     // Object를 value값으로 담을 HashMap 생성
     // 이 데이터는 어플에서 서버로 전송할 총 데이터 묶음임.
@@ -107,11 +102,6 @@ public class MainActivity extends AppCompatActivity {
         bt_send1 = (Button) findViewById(R.id.button1);
         bt_send2 = (Button) findViewById(R.id.button2);
         bt_send3 = (Button) findViewById(R.id.button3);
-
-        tv_to_print_received_obejcts_in_json_string = (TextView) findViewById(R.id.textView_receivedMessagesFromWebServer);
-
-        // Handler 객체 할당
-        mHandler = new Handler();
 
         // receivingData Runnable 객체를 사용하여
         // 위에서 설정한 IP주소 및 port번호로 socket에 연결하여 Runnable 객체 생성
@@ -389,9 +379,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 소켓 데이터 수신을 위한 별도 스레드를 위한
     // Runnable receivingData 클래스 구현
-    // 수신되는 데이터 문자열을 무한루프로 체크하면서
-    // 수신된 데이터의 내용이 존재할 시,
-    // Handler를 통해 UI 업데이트를 한다.
+    // 수신되는 데이터 문자열을 무한루프로 체크
     private class receivingData implements Runnable{
         public void run() {
                 System.out.println("새로운 receivingData 스레드 실행");
@@ -412,8 +400,6 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("데이터 수신됨");
                     // 로그 출력을 통한 수신 데이터 확인
                     System.out.println(receivedDataString);
-                    // 핸들러를 통한 TextView 업데이트
-                    mHandler.post(updateTextView);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -421,16 +407,5 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("receivingData 스레드 종료");
         }
     }
-
-    // 익명클래스를 사용한 Runnable 클래스 구현
-    // Runnable 객체 생성 및 할당
-    // receivingData의 Handler post에서 사용된다.
-    private Runnable updateTextView = new Runnable() {
-        @Override
-        public void run() {
-            tv_to_print_received_obejcts_in_json_string.append("\n"+receivedDataString);
-            System.out.println("텍스트뷰 업데이트 완료");
-        }
-    };
 
 }
