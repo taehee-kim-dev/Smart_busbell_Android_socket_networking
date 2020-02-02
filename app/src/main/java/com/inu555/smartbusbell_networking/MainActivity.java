@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
         // === 1번 데이터 === //
 
+        Android android1 = new Android("abc111", "인천11가2222", "780-1", "test1");
 
 
         // HashMap에
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-//        model1.put();
+        model1.put("confirmBus", android1);
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,j
@@ -200,14 +201,14 @@ public class MainActivity extends AppCompatActivity {
 
         // === 2번 데이터 === //
 
-
+        Android android2 = new Android("abc111", "인천11가2222", "780-1", "test2");
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-//        model2.put();
+        model2.put("addReservation", android2);
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
@@ -224,14 +225,14 @@ public class MainActivity extends AppCompatActivity {
 
         // === 3번 데이터 === //
 
-
+        Android android3 = new Android("abc111", "인천11가2222", "780-1", "test3");
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-//        model3.put();
+        model3.put("updateReservation", android3);
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
@@ -272,14 +273,14 @@ public class MainActivity extends AppCompatActivity {
 
         // === 5번 데이터 === //
 
-
+        Android android5 = new Android("abc111", "인천11가2222", "780-1", "test");
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-//        model5.put();
+        model5.put("ringImmediately", android5);
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
