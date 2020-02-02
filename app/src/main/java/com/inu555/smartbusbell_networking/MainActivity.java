@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
         // === 2번 데이터 === //
 
-        Android android2 = new Android("abc111", "인천11가2222", "780-1", "test2");
+        Android android2 = new Android("abc111", "인천11가2222", "780-1", "38-000");
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
         // === 3번 데이터 === //
 
-        Android android3 = new Android("abc111", "인천11가2222", "780-1", "test3");
+        Android android3 = new Android("abc111", "인천11가2222", "780-1", "38-385");
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
