@@ -1,12 +1,14 @@
 package com.inu555.smartbusbell_networking;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
+import com.inu555.smartbusbell_networking.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,7 +29,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     // 포트번호
-    private final int port = 7777;
+    private final int port = 5555;
     // IP주소
     //private final String ip = "13.125.8.121";
     private final String ip = "10.0.2.2";
@@ -95,6 +97,18 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, Object> model1 = new HashMap<String, Object>();
     HashMap<String, Object> model2 = new HashMap<String, Object>();
     HashMap<String, Object> model3 = new HashMap<String, Object>();
+    HashMap<String, Object> model4 = new HashMap<String, Object>();
+    HashMap<String, Object> model5 = new HashMap<String, Object>();
+    HashMap<String, Object> model6 = new HashMap<String, Object>();
+    HashMap<String, Object> model7 = new HashMap<String, Object>();
+    HashMap<String, Object> model8 = new HashMap<String, Object>();
+    HashMap<String, Object> model9 = new HashMap<String, Object>();
+    HashMap<String, Object> model10 = new HashMap<String, Object>();
+    HashMap<String, Object> model11 = new HashMap<String, Object>();
+    HashMap<String, Object> model12 = new HashMap<String, Object>();
+    HashMap<String, Object> model13 = new HashMap<String, Object>();
+    HashMap<String, Object> model14 = new HashMap<String, Object>();
+    HashMap<String, Object> model15 = new HashMap<String, Object>();
 
 
 
@@ -157,20 +171,19 @@ public class MainActivity extends AppCompatActivity {
         // Gson형 객체 생성
         Gson gson = new Gson();
 
+
+
+
         // === 1번 데이터 === //
 
-        ConfirmBus confirmBus = new ConfirmBus("인천11가2222", "780-1번");
 
-        Android android1 = new Android("abc111", "인천11가2222", "780-1", null);
-
-        RasberryPi rasberryPi1 = new RasberryPi("인천11가2222", "780-1", 1.1 , 2.2);
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model1.put("registerBus", rasberryPi1);
+//        model1.put();
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,j
@@ -187,16 +200,14 @@ public class MainActivity extends AppCompatActivity {
 
         // === 2번 데이터 === //
 
-        Android android2 = new Android("abc111", "인천11가2222", "780-1", "38-378");
 
-        RasberryPi rasberryPi2 = new RasberryPi("인천11가2222", "780-1", 37.374392, 126.636320);
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model2.put("busGPSInform", rasberryPi2);
+//        model2.put();
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
@@ -209,28 +220,323 @@ public class MainActivity extends AppCompatActivity {
         // === 2번 데이터 끝 === //
 
 
-        Android android3 = new Android("abc123", "인천11가2222", "780-1", "38-377");
+
+
+        // === 3번 데이터 === //
+
+
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-        model3.put("searchBusRoute", "90");
+//        model3.put();
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
         // dataJsonStrToSend 참조 변수에 할당하였다.
-//        dataJsonStrToSend3 = gson.toJson(model3);
-//
-//        // 확인차 로그출력을 한다.
-//        System.out.println(dataJsonStrToSend3);
+        dataJsonStr3 = gson.toJson(model3);
 
-        // === 3번 데이터 === //
-
-
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr3);
 
         // === 3번 데이터 끝 === //
+
+
+
+
+        // === 4번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model4.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,j
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr4 = gson.toJson(model4);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr4);
+
+        // === 4번 데이터 끝 === //
+
+
+
+
+        // === 5번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model5.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr5 = gson.toJson(model5);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr5);
+
+        // === 5번 데이터 끝 === //
+
+
+
+
+        // === 6번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model6.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr6 = gson.toJson(model6);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr6);
+
+        // === 6번 데이터 끝 === //
+
+
+
+
+        // === 7번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model7.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,j
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr7 = gson.toJson(model7);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr7);
+
+        // === 7번 데이터 끝 === //
+
+
+
+
+        // === 8번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model8.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr8 = gson.toJson(model8);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr8);
+
+        // === 8번 데이터 끝 === //
+
+
+
+
+        // === 9번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model9.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr9 = gson.toJson(model9);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr9);
+
+        // === 9번 데이터 끝 === //
+
+
+
+
+        // === 10번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model10.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,j
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr10 = gson.toJson(model10);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr10);
+
+        // === 10번 데이터 끝 === //
+
+
+
+
+        // === 11번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model11.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr11 = gson.toJson(model11);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr11);
+
+        // === 11번 데이터 끝 === //
+
+
+
+
+        // === 12번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model12.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr12 = gson.toJson(model12);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr12);
+
+        // === 12번 데이터 끝 === //
+
+
+
+
+        // === 13번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model13.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,j
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr13 = gson.toJson(model13);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr13);
+
+        // === 13번 데이터 끝 === //
+
+
+
+
+        // === 14번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model14.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr14 = gson.toJson(model14);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr14);
+
+        // === 14번 데이터 끝 === //
+
+
+
+
+        // === 15번 데이터 === //
+
+
+
+        // HashMap에
+        // "DataToSendFromAndroidToSpring"를 key값으로
+        // reservationsArrayList를 model값으로 하여 저장
+        // 위에서 말했듯이 이 model변수에 있는 데이터가
+        // 어플에서 서버로 전송할 총 데이터 묶음이다.
+//        model15.put();
+
+        // 전체 model 데이터를 Gson의 라이브러리 함수로
+        // JSON형식의 문자열로 변환하여,
+        // dataJsonStrToSend 참조 변수에 할당하였다.
+        dataJsonStr15 = gson.toJson(model15);
+
+        // 확인차 로그출력을 한다.
+        System.out.println(dataJsonStr15);
+
+        // === 3번 데이터 끝 === //
+
+
+
+
+
+
+
 
         // 전송 버튼에 클릭리스터 설정
         bt_send1.setOnClickListener(new Button.OnClickListener() {
@@ -448,7 +754,7 @@ public class MainActivity extends AppCompatActivity {
     // 수신되는 데이터 문자열을 무한루프로 체크
     private class receivingData implements Runnable{
         public void run() {
-                System.out.println("새로운 receivingData 스레드 실행");
+            System.out.println("새로운 receivingData 스레드 실행");
             try {
                 // IP주소와 port번호로 소켓 객체를 생성하여
                 // 소켓 참조변수에 할당
