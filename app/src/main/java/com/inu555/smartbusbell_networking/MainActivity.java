@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,
         // dataJsonStrToSend 참조 변수에 할당하였다.
-        dataJsonStr8 = gson.toJson(model8);
+        dataJsonStr8 = "wrgsfbzdbnsxfhnmshrfm";
 
         // 확인차 로그출력을 한다.
         System.out.println(dataJsonStr8);
