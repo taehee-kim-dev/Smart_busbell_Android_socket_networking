@@ -321,14 +321,14 @@ public class MainActivity extends AppCompatActivity {
 
         // === 7번 데이터 === //
 
-
+        Android android7 = new Android("abc111", "인천11가2222", "780-1", "test");
 
         // HashMap에
         // "DataToSendFromAndroidToSpring"를 key값으로
         // reservationsArrayList를 model값으로 하여 저장
         // 위에서 말했듯이 이 model변수에 있는 데이터가
         // 어플에서 서버로 전송할 총 데이터 묶음이다.
-//        model7.put();
+        model7.put("requestBusRoute", android7);
 
         // 전체 model 데이터를 Gson의 라이브러리 함수로
         // JSON형식의 문자열로 변환하여,j
